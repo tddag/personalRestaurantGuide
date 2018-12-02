@@ -169,12 +169,13 @@
             android:paddingTop="20dp">
 
             <Button
+                android:id="@+id/btnEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/add_restaurant_btn"
                 android:text="Edit"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false" />
 
             <Button
                 android:layout_width="wrap_content"
