@@ -19,7 +19,8 @@
         <activity android:name=".RestaurantActivity" />
         <activity android:name=".AboutUsActivity" />
         <activity android:name=".AddActivity" />
-        <activity android:name=".EditActivity"></activity>
+        <activity android:name=".EditActivity" />
+        <activity android:name=".RestaurantDetailActivity"></activity>
     </application>
 
 </manifest>

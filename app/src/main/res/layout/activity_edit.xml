@@ -155,11 +155,6 @@
                 android:text="Update" />
         </LinearLayout>
 
-        <TextView
-            android:layout_width="145dp"
-            android:layout_height="79dp" />
-
-
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
