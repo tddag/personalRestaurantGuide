@@ -8,7 +8,7 @@ import android.widget.Button;
 
 public class SplashActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private Button btnAbout;
+    private Button btnAbout, btnList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,9 +17,11 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
 
         // Defining Button
         btnAbout = findViewById(R.id.btnAbout);
+        btnList = findViewById(R.id.btnList);
 
         // Set Click Listener
         btnAbout.setOnClickListener(this);
+        btnList.setOnClickListener(this);
     }
 
 
@@ -30,6 +32,10 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
         switch(v.getId()) {
             case R.id.btnAbout:
                 i = new Intent(this, AboutUsActivity.class);
+                startActivity(i);
+                break;
+            case R.id.btnList:
+                i = new Intent(this, RestaurantActivity.class);
                 startActivity(i);
                 break;
         }
