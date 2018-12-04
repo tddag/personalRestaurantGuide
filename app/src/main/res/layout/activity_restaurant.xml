@@ -59,6 +59,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <ListView
+        android:id="@+id/restaurantsList"
         android:layout_width="261dp"
         android:layout_height="371dp"
         android:layout_marginStart="8dp"

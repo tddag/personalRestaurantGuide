@@ -178,11 +178,12 @@
                 android:textAllCaps="false" />
 
             <Button
+                android:id="@+id/btnShowMap"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/restaurant_list_btn"
                 android:text="Show Map"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false" />
         </LinearLayout>
 
     </LinearLayout>
