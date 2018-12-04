@@ -10,7 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
 
@@ -28,20 +27,12 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         if(convertView == null){
             LayoutInflater inf = LayoutInflater.from(context);
-            convertView = inf.inflate(R.layout.activity_restaurant_detail, parent, false);
+            convertView = inf.inflate(R.layout.custom_layout, parent, false);
         }
         TextView name = convertView.findViewById(R.id.txtName);
-        TextView address = convertView.findViewById(R.id.txtAddress);
-        TextView phone = convertView.findViewById(R.id.txtPhone);
-        TextView description = convertView.findViewById(R.id.txtDescription);
-        TextView tag = convertView.findViewById(R.id.txtTag);
 
         Restaurant r = dataSet.get(position);
         name.setText(r.getName());
-        address.setText(r.getAddress());
-        phone.setText(r.getPhone());
-        description.setText(r.getDescription());
-        tag.setText(r.getTag());
 
         return  convertView;
     }
