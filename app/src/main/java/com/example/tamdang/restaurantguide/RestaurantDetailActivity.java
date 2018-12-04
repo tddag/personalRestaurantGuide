@@ -1,19 +1,44 @@
 package com.example.tamdang.restaurantguide;
 
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class RestaurantDetailActivity extends AppCompatActivity {
 
     Button btnEdit;
+    private int position;
+    public static final int EDIT_RESTAURANT = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_detail);
+
+        Intent i = getIntent();
+
+        position = i.getIntExtra("position", -1);
+        final String name = i.getStringExtra("name");
+        final String address = i.getStringExtra("address");
+        final String description = i.getStringExtra("description");
+        final String phone = i.getStringExtra("phone");
+        final String tag = i.getStringExtra("tag");
+
+        TextView txtName = findViewById(R.id.txtName);
+        TextView txtAddress = findViewById(R.id.txtAddress);
+        TextView txtPhone = findViewById(R.id.txtPhone);
+        TextView txtDescription = findViewById(R.id.txtDescription);
+        TextView txtTag = findViewById(R.id.txtTag);
+
+        txtName.setText(name);
+        txtAddress.setText(address);
+        txtPhone.setText(phone);
+        txtDescription.setText(description);
+        txtTag.setText(tag);
 
         //Defining Button
         btnEdit = findViewById(R.id.btnEdit);
@@ -22,8 +47,52 @@ public class RestaurantDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(v.getContext(), EditActivity.class);
-                startActivity(i);
+                i.putExtra("position", position);
+                i.putExtra("name", name);
+                i.putExtra("address", address);
+                i.putExtra("phone", phone);
+                i.putExtra("description", description);
+                i.putExtra("tag", tag);
+                startActivityForResult(i, EDIT_RESTAURANT);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if(requestCode == EDIT_RESTAURANT){
+            if(resultCode == RESULT_OK){
+                int pos = data.getIntExtra("position", -1);
+                if(pos != -1){
+                    String name = data.getStringExtra("name");
+                    String address = data.getStringExtra("address");
+                    String phone = data.getStringExtra("phone");
+                    String description = data.getStringExtra("description");
+                    String tag = data.getStringExtra("tag");
+
+                    TextView txtName = findViewById(R.id.txtName);
+                    TextView txtAddress = findViewById(R.id.txtAddress);
+                    TextView txtPhone = findViewById(R.id.txtPhone);
+                    TextView txtDescription = findViewById(R.id.txtDescription);
+                    TextView txtTag = findViewById(R.id.txtTag);
+
+                    txtName.setText(name);
+                    txtAddress.setText(address);
+                    txtPhone.setText(phone);
+                    txtDescription.setText(description);
+                    txtTag.setText(tag);
+
+                    Intent i = getIntent();
+                    i.putExtra("name", name);
+                    i.putExtra("address", address);
+                    i.putExtra("phone", phone);
+                    i.putExtra("description", description);
+                    i.putExtra("tag", tag);
+                    i.putExtra("position", pos);
+//                    finish();
+//                   startActivityForResult(i, EDIT_RESTAURANT);
+                }
+            }
+        }
     }
 }
