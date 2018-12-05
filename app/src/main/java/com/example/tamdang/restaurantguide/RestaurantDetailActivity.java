@@ -8,16 +8,19 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 public class RestaurantDetailActivity extends AppCompatActivity {
 
     Button btnEdit;
+    private RatingBar rating_bar;
+    private int rating_value;
     private int position;
     public static final int EDIT_RESTAURANT = 1;
     private SQLiteDatabase db;
     private RestaurantDBHelper myDB;
-    public String TAG = "Main";
+    public String TAG = "My Tag";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,8 @@ public class RestaurantDetailActivity extends AppCompatActivity {
         final String description = i.getStringExtra("description");
         final String phone = i.getStringExtra("phone");
         final String tag = i.getStringExtra("tag");
+        final float rating = i.getFloatExtra("rating", -1);
+        Log.d(TAG, rating + "");
 
         TextView txtName = findViewById(R.id.txtName);
         TextView txtAddress = findViewById(R.id.txtAddress);
@@ -50,7 +55,10 @@ public class RestaurantDetailActivity extends AppCompatActivity {
         txtDescription.setText(description);
         txtTag.setText(tag);
 
-        Log.d(TAG, "ID: "+restaurantID);
+        //Rating Bar
+        rating_bar = findViewById(R.id.ratingBar3);
+        rating_bar.setRating(rating);
+        rating_bar.setEnabled(false);
         //Defining Button
         btnEdit = findViewById(R.id.btnEdit);
 
@@ -65,6 +73,7 @@ public class RestaurantDetailActivity extends AppCompatActivity {
                 i.putExtra("phone", phone);
                 i.putExtra("description", description);
                 i.putExtra("tag", tag);
+                i.putExtra("rating", rating);
                 startActivityForResult(i, EDIT_RESTAURANT);
             }
         });
@@ -83,12 +92,14 @@ public class RestaurantDetailActivity extends AppCompatActivity {
                     String phone = data.getStringExtra("phone");
                     String description = data.getStringExtra("description");
                     String tag = data.getStringExtra("tag");
+                    float rating = data.getFloatExtra("rating", -1);
 
                     TextView txtName = findViewById(R.id.txtName);
                     TextView txtAddress = findViewById(R.id.txtAddress);
                     TextView txtPhone = findViewById(R.id.txtPhone);
                     TextView txtDescription = findViewById(R.id.txtDescription);
                     TextView txtTag = findViewById(R.id.txtTag);
+                    rating_bar.setRating(rating);
 
                     txtName.setText(name);
                     txtAddress.setText(address);

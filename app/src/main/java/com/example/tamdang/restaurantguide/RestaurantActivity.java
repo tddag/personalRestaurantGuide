@@ -25,12 +25,11 @@ public class RestaurantActivity extends AppCompatActivity {
     private ListView lvRestaurants;
     public static final int ADD_RESTAURANT = 1;
     public static final int DETAIL_RESTAURANT = 1;
-
     // Database
     private SQLiteDatabase db;
     private RestaurantDBHelper myDB;
 
-    public String TAG = "Main";
+    public String TAG = "My TAG";
 
     private SearchView searchView;
 
@@ -48,6 +47,7 @@ public class RestaurantActivity extends AppCompatActivity {
         Restaurant r1 = myDB.getRestaurant(db, 1);
         Restaurant r2 = myDB.getRestaurant(db, 2);
         Restaurant r3 = myDB.getRestaurant(db, 3);
+
 
 
         lvRestaurants = findViewById(R.id.restaurantsList);
@@ -100,6 +100,8 @@ public class RestaurantActivity extends AppCompatActivity {
                 i.putExtra("phone", restaurants.get(position).getPhone());
                 i.putExtra("description", restaurants.get(position).getDescription());
                 i.putExtra("tag", restaurants.get(position).getTag());
+                i.putExtra("rating", restaurants.get(position).getRating());
+                Log.d(TAG, restaurants.get(position).getRating() + "");
                 Log.d(TAG, "ID: "+restaurants.get(position).getId());
                 startActivityForResult(i, DETAIL_RESTAURANT);
             }
@@ -136,8 +138,9 @@ public class RestaurantActivity extends AppCompatActivity {
                 String phone = data.getStringExtra("phone");
                 String description = data.getStringExtra("description");
                 String tag = data.getStringExtra("tag");
+                String rating = data.getStringExtra("rating");
 
-                restaurantsAdapter.add(new Restaurant(name, address, phone, description, tag));
+                restaurantsAdapter.add(new Restaurant(name, address, phone, description, tag, Float.parseFloat(rating)));
             }
         }
     }

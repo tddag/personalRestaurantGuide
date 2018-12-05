@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RatingBar;
 
 public class AddActivity extends AppCompatActivity {
     // Database
@@ -32,14 +33,16 @@ public class AddActivity extends AppCompatActivity {
                 EditText edtPhone = findViewById(R.id.edtPhone);
                 EditText edtDescription = findViewById(R.id.edtDescription);
                 EditText edtTag = findViewById(R.id.edtTag);
+                RatingBar rating_bar = findViewById(R.id.ratingBar3);
 
                 String name = edtName.getText().toString();
                 String address = edtAddress.getText().toString();
                 String phone = edtPhone.getText().toString();
                 String description = edtDescription.getText().toString();
                 String tag = edtTag.getText().toString();
+                float rating = rating_bar.getRating();
 
-                Restaurant newRestaurant = new Restaurant(name, address, phone, description, tag);
+                Restaurant newRestaurant = new Restaurant(name, address, phone, description, tag, rating);
                 myDB.addRestaurant(db, newRestaurant);
 
                 i.putExtra("name", name);
