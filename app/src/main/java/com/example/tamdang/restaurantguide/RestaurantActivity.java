@@ -43,7 +43,6 @@ public class RestaurantActivity extends AppCompatActivity {
         Restaurant r1 = myDB.getRestaurant(db, 1);
         Restaurant r2 = myDB.getRestaurant(db, 2);
         Restaurant r3 = myDB.getRestaurant(db, 3);
-        Restaurant r4 = myDB.getRestaurant(db, 4);
 
 
         lvRestaurants = findViewById(R.id.restaurantsList);
@@ -53,7 +52,6 @@ public class RestaurantActivity extends AppCompatActivity {
         restaurants.add(r1);
         restaurants.add(r2);
         restaurants.add(r3);
-        restaurants.add(r4);
 
         restaurantsAdapter = new RestaurantAdapter(this, R.layout.custom_layout, restaurants);
         lvRestaurants.setAdapter(restaurantsAdapter);
