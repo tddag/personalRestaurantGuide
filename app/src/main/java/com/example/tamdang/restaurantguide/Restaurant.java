@@ -1,10 +1,35 @@
 package com.example.tamdang.restaurantguide;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
+@Entity(tableName = "restaurant")
 public class Restaurant {
+
+    @NonNull
+    public int getId() {
+        return id;
+    }
+
+    public void setId(@NonNull int id) {
+        this.id = id;
+    }
+
+    @ColumnInfo(name = "id")
+    @NonNull
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+    @ColumnInfo(name = "name")
     private String name;
+    @ColumnInfo(name = "address")
     private String address;
+    @ColumnInfo(name = "phone")
     private String phone;
+    @ColumnInfo(name = "description")
     private String description;
+    @ColumnInfo(name = "tag")
     private String tag;
 
     public Restaurant(String name, String address, String phone, String description, String tag) {
