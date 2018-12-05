@@ -93,4 +93,14 @@ public class RestaurantDBHelper extends SQLiteOpenHelper {
         db.update(RestaurantContract.RestaurantEntry.TABLE_NAME, values, "ID= ?", new String[]{Long.toString(restaurantId)});
         return true;
     }
+    public boolean removeRestaurant(SQLiteDatabase db, Restaurant res){
+
+        db.delete(RestaurantContract.RestaurantEntry.TABLE_NAME, "ID= ?", new String[]{Long.toString(res.getId())});
+        return true;
+    }
+
+    public Cursor getAllRestaurants(SQLiteDatabase db){
+        Cursor c = db.rawQuery("SELECT * FROM " + RestaurantContract.RestaurantEntry.TABLE_NAME, null);
+        return c;
+    }
 }

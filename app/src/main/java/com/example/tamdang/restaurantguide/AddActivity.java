@@ -25,7 +25,7 @@ public class AddActivity extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = getIntent();
+                Intent i = new Intent(v.getContext(), RestaurantActivity.class);
 
                 EditText edtName = findViewById(R.id.edtName);
                 EditText edtAddress = findViewById(R.id.edtAddress);
@@ -42,14 +42,7 @@ public class AddActivity extends AppCompatActivity {
                 Restaurant newRestaurant = new Restaurant(name, address, phone, description, tag);
                 myDB.addRestaurant(db, newRestaurant);
 
-                i.putExtra("name", name);
-                i.putExtra("address", address);
-                i.putExtra("phone", phone);
-                i.putExtra("description", description);
-                i.putExtra("tag", tag);
-
-                setResult(RESULT_OK, i);
-                finish();
+                startActivity(i);
             }
         });
 

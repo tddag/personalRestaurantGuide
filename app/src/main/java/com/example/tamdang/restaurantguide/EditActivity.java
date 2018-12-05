@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 public class EditActivity extends AppCompatActivity {
 
@@ -26,7 +25,6 @@ public class EditActivity extends AppCompatActivity {
         Intent i = getIntent();
 
         position = i.getIntExtra("position", -1);
-//        final long restaurantID = Long.parseLong(i.getStringExtra("restaurantID"));
         final long restaurantID = i.getLongExtra("restaurantID", -1);
         String name = i.getStringExtra("name");
         String address = i.getStringExtra("address");
@@ -50,8 +48,7 @@ public class EditActivity extends AppCompatActivity {
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent i = new Intent(v.getContext(), RestaurantActivity.class);
-                Intent i = getIntent();
+                Intent i = new Intent(v.getContext(), RestaurantActivity.class);
 
                 EditText edtName1 = findViewById(R.id.edtName);
                 EditText edtAddress1 = findViewById(R.id.edtAddress);
@@ -67,18 +64,7 @@ public class EditActivity extends AppCompatActivity {
 
 
                 myDB.editRestaurant(db, restaurantID, name, address, phone, description, tag);
-
-                i.putExtra("position", position);
-                i.putExtra("name", name);
-                i.putExtra("address", address);
-                i.putExtra("phone", phone);
-                i.putExtra("description", description);
-                i.putExtra("tag", tag);
-
-
-                setResult(RESULT_OK, i);
-                finish();
-//                startActivityForResult(i, RESULT_OK);
+                startActivity(i);
             }
         });
     }

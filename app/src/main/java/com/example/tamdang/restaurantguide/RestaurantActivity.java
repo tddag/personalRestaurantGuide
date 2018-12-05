@@ -2,6 +2,7 @@ package com.example.tamdang.restaurantguide;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -28,7 +29,7 @@ public class RestaurantActivity extends AppCompatActivity {
     private SQLiteDatabase db;
     private RestaurantDBHelper myDB;
 
-    public String TAG = "Main";
+    public String TAG = "Main !!!";
 
 
     @Override
@@ -40,20 +41,14 @@ public class RestaurantActivity extends AppCompatActivity {
         myDB = new RestaurantDBHelper(this);
         db = myDB.getWritableDatabase();
 
-        Restaurant r1 = myDB.getRestaurant(db, 1);
-        Restaurant r2 = myDB.getRestaurant(db, 2);
-        Restaurant r3 = myDB.getRestaurant(db, 3);
-        Restaurant r4 = myDB.getRestaurant(db, 4);
-
-
         lvRestaurants = findViewById(R.id.restaurantsList);
         restaurants = new ArrayList<>();
 
-
-        restaurants.add(r1);
-        restaurants.add(r2);
-        restaurants.add(r3);
-        restaurants.add(r4);
+        Cursor data = myDB.getAllRestaurants(db);
+        while(data.moveToNext()){
+            Restaurant r = myDB.getRestaurant(db, Long.parseLong(data.getString(0)));
+            restaurants.add(r);
+        }
 
         restaurantsAdapter = new RestaurantAdapter(this, R.layout.custom_layout, restaurants);
         lvRestaurants.setAdapter(restaurantsAdapter);
@@ -71,15 +66,16 @@ public class RestaurantActivity extends AppCompatActivity {
         });
         lvRestaurants.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                final int pos = position;
+            public boolean onItemLongClick(final AdapterView<?> parent, View view, final int position, long id) {
                 new AlertDialog.Builder(view.getContext()).setTitle("Warning!")
                         .setMessage("Do you want to remove this restaurant ?")
                         .setNegativeButton(android.R.string.no, null)
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                restaurants.remove(pos);
+                                Restaurant r = (Restaurant) parent.getItemAtPosition(position);
+                                restaurants.remove(r);
+                                myDB.removeRestaurant(db, r);
                                 restaurantsAdapter.notifyDataSetChanged();
                             }
                         }).show();
@@ -101,21 +97,5 @@ public class RestaurantActivity extends AppCompatActivity {
                 startActivityForResult(i, DETAIL_RESTAURANT);
             }
         });
-    }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == ADD_RESTAURANT){
-            if(resultCode == RESULT_OK){
-                String name = data.getStringExtra("name");
-                String address = data.getStringExtra("address");
-                String phone = data.getStringExtra("phone");
-                String description = data.getStringExtra("description");
-                String tag = data.getStringExtra("tag");
-
-                restaurantsAdapter.add(new Restaurant(name, address, phone, description, tag));
-            }
-        }
     }
 }

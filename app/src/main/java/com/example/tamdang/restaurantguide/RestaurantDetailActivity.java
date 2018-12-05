@@ -15,8 +15,8 @@ public class RestaurantDetailActivity extends AppCompatActivity {
     Button btnEdit;
     private int position;
     public static final int EDIT_RESTAURANT = 1;
-    private SQLiteDatabase db;
-    private RestaurantDBHelper myDB;
+//    private SQLiteDatabase db;
+//    private RestaurantDBHelper myDB;
     public String TAG = "Main";
 
     @Override
@@ -25,8 +25,8 @@ public class RestaurantDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_restaurant_detail);
 
         // Database
-        myDB = new RestaurantDBHelper(this);
-        db = myDB.getWritableDatabase();
+//        myDB = new RestaurantDBHelper(this);
+//        db = myDB.getWritableDatabase();
 
         Intent i = getIntent();
 
@@ -77,7 +77,7 @@ public class RestaurantDetailActivity extends AppCompatActivity {
                 int pos = data.getIntExtra("position", -1);
                 if(pos != -1){
 
-                    String restaurantID = data.getStringExtra("restaurantID");
+//                    String restaurantID = data.getStringExtra("restaurantID");
                     String name = data.getStringExtra("name");
                     String address = data.getStringExtra("address");
                     String phone = data.getStringExtra("phone");
@@ -104,8 +104,8 @@ public class RestaurantDetailActivity extends AppCompatActivity {
                     i.putExtra("tag", tag);
                     i.putExtra("position", pos);
 
-                    long resID = Long.parseLong(restaurantID);
-                    myDB.editRestaurant(db, resID, name, address, phone, description, tag);
+//                    long resID = Long.parseLong(restaurantID);
+//                    myDB.editRestaurant(db, resID, name, address, phone, description, tag);
 
 //                    finish();
 //                   startActivityForResult(i, EDIT_RESTAURANT);
