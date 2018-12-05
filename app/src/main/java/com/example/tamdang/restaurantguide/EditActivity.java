@@ -1,6 +1,7 @@
 package com.example.tamdang.restaurantguide;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,15 +12,22 @@ import android.widget.TextView;
 public class EditActivity extends AppCompatActivity {
 
     private int position;
-
+    private SQLiteDatabase db;
+    private RestaurantDBHelper myDB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
 
+        // Database
+        myDB = new RestaurantDBHelper(this);
+        db = myDB.getWritableDatabase();
+
         Intent i = getIntent();
 
         position = i.getIntExtra("position", -1);
+//        final long restaurantID = Long.parseLong(i.getStringExtra("restaurantID"));
+        final long restaurantID = i.getLongExtra("restaurantID", -1);
         String name = i.getStringExtra("name");
         String address = i.getStringExtra("address");
         String description = i.getStringExtra("description");
@@ -57,12 +65,16 @@ public class EditActivity extends AppCompatActivity {
                 String description = edtDescription1.getText().toString();
                 String tag = edtTag1.getText().toString();
 
+
+                myDB.editRestaurant(db, restaurantID, name, address, phone, description, tag);
+
                 i.putExtra("position", position);
                 i.putExtra("name", name);
                 i.putExtra("address", address);
                 i.putExtra("phone", phone);
                 i.putExtra("description", description);
                 i.putExtra("tag", tag);
+
 
                 setResult(RESULT_OK, i);
                 finish();

@@ -2,13 +2,14 @@ package com.example.tamdang.restaurantguide;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -23,13 +24,37 @@ public class RestaurantActivity extends AppCompatActivity {
     public static final int ADD_RESTAURANT = 1;
     public static final int DETAIL_RESTAURANT = 1;
 
+    // Database
+    private SQLiteDatabase db;
+    private RestaurantDBHelper myDB;
+
+    public String TAG = "Main";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant);
 
+        // Database
+        myDB = new RestaurantDBHelper(this);
+        db = myDB.getWritableDatabase();
+
+        Restaurant r1 = myDB.getRestaurant(db, 1);
+        Restaurant r2 = myDB.getRestaurant(db, 2);
+        Restaurant r3 = myDB.getRestaurant(db, 3);
+        Restaurant r4 = myDB.getRestaurant(db, 4);
+
+
         lvRestaurants = findViewById(R.id.restaurantsList);
         restaurants = new ArrayList<>();
+
+
+        restaurants.add(r1);
+        restaurants.add(r2);
+        restaurants.add(r3);
+        restaurants.add(r4);
+
         restaurantsAdapter = new RestaurantAdapter(this, R.layout.custom_layout, restaurants);
         lvRestaurants.setAdapter(restaurantsAdapter);
 
@@ -66,11 +91,13 @@ public class RestaurantActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent i = new Intent(view.getContext(), RestaurantDetailActivity.class);
                 i.putExtra("position", position);
+                i.putExtra("restaurantID", restaurants.get(position).getId());
                 i.putExtra("name", restaurants.get(position).getName());
                 i.putExtra("address", restaurants.get(position).getAddress());
                 i.putExtra("phone", restaurants.get(position).getPhone());
                 i.putExtra("description", restaurants.get(position).getDescription());
                 i.putExtra("tag", restaurants.get(position).getTag());
+                Log.d(TAG, "ID: "+restaurants.get(position).getId());
                 startActivityForResult(i, DETAIL_RESTAURANT);
             }
         });
