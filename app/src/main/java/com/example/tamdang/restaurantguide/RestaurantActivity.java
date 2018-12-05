@@ -7,11 +7,13 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SearchView;
 
 import java.util.ArrayList;
 
@@ -30,11 +32,14 @@ public class RestaurantActivity extends AppCompatActivity {
 
     public String TAG = "Main";
 
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant);
+
+
 
         // Database
         myDB = new RestaurantDBHelper(this);
@@ -97,6 +102,26 @@ public class RestaurantActivity extends AppCompatActivity {
                 i.putExtra("tag", restaurants.get(position).getTag());
                 Log.d(TAG, "ID: "+restaurants.get(position).getId());
                 startActivityForResult(i, DETAIL_RESTAURANT);
+            }
+        });
+
+        searchView = findViewById(R.id.searchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (TextUtils.isEmpty(newText)) {
+                    restaurantsAdapter.filter("");
+                    lvRestaurants.clearTextFilter();
+                } else {
+                    restaurantsAdapter.filter(newText);
+                }
+
+                return true;
             }
         });
     }
