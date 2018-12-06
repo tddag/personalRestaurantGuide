@@ -11,14 +11,6 @@ public class Restaurant {
     private String description;
     private String tag;
 
-    public float getRating() {
-        return rating;
-    }
-
-    public void setRating(float rating) {
-        this.rating = rating;
-    }
-
     private float rating;
 
     public Restaurant(String name, String address, String phone, String description, String tag) {
@@ -45,6 +37,14 @@ public class Restaurant {
         this.description = description;
         this.tag = tag;
         this.rating = rating;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getAddress() {
@@ -88,13 +88,11 @@ public class Restaurant {
         this.id = id;
     }
 
-    public String getName() {
-
-        return name;
-
+    public float getRating() {
+        return rating;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRating(float rating) {
+        this.rating = rating;
     }
 }

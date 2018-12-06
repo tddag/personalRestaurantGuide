@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 
 public class AddActivity extends AppCompatActivity {
+
     // Database
     private SQLiteDatabase db;
     private RestaurantDBHelper myDB;
@@ -19,13 +20,18 @@ public class AddActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
 
+        // Get DB
         myDB = new RestaurantDBHelper(this);
         db = myDB.getWritableDatabase();
 
+        // Define Button Add
         Button btnAdd = findViewById(R.id.btnAdd);
+
+        // set event for btnAdd
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Set intent to RestaurantActivity
                 Intent i = new Intent(v.getContext(), RestaurantActivity.class);
 
                 EditText edtName = findViewById(R.id.edtName);
@@ -33,18 +39,18 @@ public class AddActivity extends AppCompatActivity {
                 EditText edtPhone = findViewById(R.id.edtPhone);
                 EditText edtDescription = findViewById(R.id.edtDescription);
                 EditText edtTag = findViewById(R.id.edtTag);
-                RatingBar rating_bar = findViewById(R.id.ratingBar3);
 
                 String name = edtName.getText().toString();
                 String address = edtAddress.getText().toString();
                 String phone = edtPhone.getText().toString();
                 String description = edtDescription.getText().toString();
                 String tag = edtTag.getText().toString();
-//                float rating = rating_bar.getRating();
 
+                // Add new Restaurant to DB
                 Restaurant newRestaurant = new Restaurant(name, address, phone, description, tag);
                 myDB.addRestaurant(db, newRestaurant);
 
+                // Go back to RestaurantActivity
                 startActivity(i);
             }
         });

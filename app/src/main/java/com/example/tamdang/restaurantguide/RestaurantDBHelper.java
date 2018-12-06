@@ -85,7 +85,7 @@ public class RestaurantDBHelper extends SQLiteOpenHelper {
         cursor.close();
         return null;
     }
-    public boolean editRestaurant(SQLiteDatabase db, long restaurantId, String name, String address, String phone, String description, String tag, float rating){
+    public boolean updateRestaurant(SQLiteDatabase db, long restaurantId, String name, String address, String phone, String description, String tag, float rating){
         ContentValues values = new ContentValues();
         values.put(RestaurantContract.RestaurantEntry.NAME, name);
         values.put(RestaurantContract.RestaurantEntry.ADDRESS, address);
@@ -96,9 +96,9 @@ public class RestaurantDBHelper extends SQLiteOpenHelper {
         db.update(RestaurantContract.RestaurantEntry.TABLE_NAME, values, "ID= ?", new String[]{Long.toString(restaurantId)});
         return true;
     }
-    public boolean removeRestaurant(SQLiteDatabase db, Restaurant res){
+    public boolean removeRestaurant(SQLiteDatabase db, Restaurant restaurant){
 
-        db.delete(RestaurantContract.RestaurantEntry.TABLE_NAME, "ID= ?", new String[]{Long.toString(res.getId())});
+        db.delete(RestaurantContract.RestaurantEntry.TABLE_NAME, "ID= ?", new String[]{Long.toString(restaurant.getId())});
         return true;
     }
 
