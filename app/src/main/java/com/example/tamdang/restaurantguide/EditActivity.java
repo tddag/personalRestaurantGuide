@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RatingBar;
 
 public class EditActivity extends AppCompatActivity {
 
@@ -31,18 +32,21 @@ public class EditActivity extends AppCompatActivity {
         String description = i.getStringExtra("description");
         String phone = i.getStringExtra("phone");
         String tag = i.getStringExtra("tag");
+        float rating = i.getFloatExtra("rating", -1);
 
         EditText edtName = findViewById(R.id.edtName);
         EditText edtAddress = findViewById(R.id.edtAddress);
         EditText edtPhone = findViewById(R.id.edtPhone);
         EditText edtDescription = findViewById(R.id.edtDescription);
         EditText edtTag = findViewById(R.id.edtTag);
+        RatingBar rb = findViewById(R.id.ratingBar4);
 
         edtName.setText(name);
         edtAddress.setText(address);
         edtPhone.setText(phone);
         edtDescription.setText(description);
         edtTag.setText(tag);
+        rb.setRating(rating);
 
         Button btnUpdate = findViewById(R.id.btnUpdate);
         btnUpdate.setOnClickListener(new View.OnClickListener() {
@@ -55,15 +59,17 @@ public class EditActivity extends AppCompatActivity {
                 EditText edtPhone1 = findViewById(R.id.edtPhone);
                 EditText edtDescription1 = findViewById(R.id.edtDescription);
                 EditText edtTag1 = findViewById(R.id.edtTag);
+                RatingBar rb = findViewById(R.id.ratingBar4);
 
                 String name = edtName1.getText().toString();
                 String address = edtAddress1.getText().toString();
                 String phone = edtPhone1.getText().toString();
                 String description = edtDescription1.getText().toString();
                 String tag = edtTag1.getText().toString();
+                float rating = rb.getRating();
 
 
-                myDB.editRestaurant(db, restaurantID, name, address, phone, description, tag);
+                myDB.editRestaurant(db, restaurantID, name, address, phone, description, tag, rating);
                 startActivity(i);
             }
         });

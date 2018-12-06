@@ -24,12 +24,9 @@ public class RestaurantActivity extends AppCompatActivity {
     private ListView lvRestaurants;
     public static final int ADD_RESTAURANT = 1;
     public static final int DETAIL_RESTAURANT = 1;
-
     // Database
     private SQLiteDatabase db;
     private RestaurantDBHelper myDB;
-
-    public String TAG = "Main !!!";
 
 
     @Override
@@ -43,6 +40,7 @@ public class RestaurantActivity extends AppCompatActivity {
 
         lvRestaurants = findViewById(R.id.restaurantsList);
         restaurants = new ArrayList<>();
+
 
         Cursor data = myDB.getAllRestaurants(db);
         while(data.moveToNext()){
@@ -93,7 +91,7 @@ public class RestaurantActivity extends AppCompatActivity {
                 i.putExtra("phone", restaurants.get(position).getPhone());
                 i.putExtra("description", restaurants.get(position).getDescription());
                 i.putExtra("tag", restaurants.get(position).getTag());
-                Log.d(TAG, "ID: "+restaurants.get(position).getId());
+                i.putExtra("rating", restaurants.get(position).getRating());
                 startActivityForResult(i, DETAIL_RESTAURANT);
             }
         });

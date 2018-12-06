@@ -14,6 +14,7 @@ public class RestaurantContract {
         public static final String PHONE = "phone";
         public static final String DESCRIPTION = "description";
         public static final String TAG = "tag";
+        public static final String RATING = "rating";
     }
 
     public static final String SQL_CREATE_RESTAURANT =
@@ -23,7 +24,8 @@ public class RestaurantContract {
                     RestaurantEntry.ADDRESS+" TEXT, " +
                     RestaurantEntry.PHONE+" TEXT, " +
                     RestaurantEntry.DESCRIPTION+" TEXT, " +
-                    RestaurantEntry.TAG+" TEXT)";
+                    RestaurantEntry.TAG+" TEXT, " +
+                    RestaurantEntry.RATING+" NUMBER)";
 
     public static final String SQL_DROP_RESTAURANT =
             "DROP TABLE IF EXISTS "+RestaurantEntry.TABLE_NAME;
