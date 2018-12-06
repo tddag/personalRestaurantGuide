@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 public class RestaurantDetailActivity extends AppCompatActivity {
 
-    Button btnEdit;
+    Button btnEdit, btnShowMap, btnEmail;
     private RatingBar rating_bar;
     // Define DB
     private SQLiteDatabase db;
@@ -57,6 +57,30 @@ public class RestaurantDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(v.getContext(), EditActivity.class);
+                i.putExtra("restaurantID", restaurantID);
+                startActivity(i);
+            }
+        });
+
+        //Defining Map Button
+        btnShowMap = findViewById(R.id.btnShowMap);
+        // set event for btnMap
+        btnShowMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(), MapsActivity.class);
+                i.putExtra("restaurantID", restaurantID);
+                startActivity(i);
+            }
+        });
+
+        //Defining Email Button
+        btnEmail = findViewById(R.id.btnEmail);
+        // set event for btnEmail
+        btnEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(), EmailActivity.class);
                 i.putExtra("restaurantID", restaurantID);
                 startActivity(i);
             }
