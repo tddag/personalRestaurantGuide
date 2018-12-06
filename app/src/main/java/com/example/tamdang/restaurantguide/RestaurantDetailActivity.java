@@ -15,33 +15,22 @@ public class RestaurantDetailActivity extends AppCompatActivity {
 
     Button btnEdit;
     private RatingBar rating_bar;
-    private int rating_value;
-    private int position;
-    public static final int EDIT_RESTAURANT = 1;
+    // Define DB
     private SQLiteDatabase db;
     private RestaurantDBHelper myDB;
-    public String TAG = "My Tag";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_detail);
 
-        // Database
+        // DB instantiation
         myDB = new RestaurantDBHelper(this);
         db = myDB.getWritableDatabase();
 
+        // Get restaurantID from intent
         Intent i = getIntent();
-
-        position = i.getIntExtra("position", -1);
         final long restaurantID = i.getLongExtra("restaurantID", -1);
-        final String name = i.getStringExtra("name");
-        final String address = i.getStringExtra("address");
-        final String description = i.getStringExtra("description");
-        final String phone = i.getStringExtra("phone");
-        final String tag = i.getStringExtra("tag");
-        final float rating = i.getFloatExtra("rating", -1);
-        Log.d(TAG, rating + "");
 
         TextView txtName = findViewById(R.id.txtName);
         TextView txtAddress = findViewById(R.id.txtAddress);
@@ -49,79 +38,28 @@ public class RestaurantDetailActivity extends AppCompatActivity {
         TextView txtDescription = findViewById(R.id.txtDescription);
         TextView txtTag = findViewById(R.id.txtTag);
 
-        txtName.setText(name);
-        txtAddress.setText(address);
-        txtPhone.setText(phone);
-        txtDescription.setText(description);
-        txtTag.setText(tag);
+        Restaurant r = myDB.getRestaurant(db, restaurantID);
+        txtName.setText(r.getName());
+        txtAddress.setText(r.getAddress());
+        txtPhone.setText(r.getPhone());
+        txtDescription.setText(r.getDescription());
+        txtTag.setText(r.getTag());
 
         //Rating Bar
         rating_bar = findViewById(R.id.ratingBar3);
-        rating_bar.setRating(rating);
+        rating_bar.setRating(r.getRating());
         rating_bar.setEnabled(false);
+
         //Defining Button
         btnEdit = findViewById(R.id.btnEdit);
-
+        // set even for btnEdit
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(v.getContext(), EditActivity.class);
-                i.putExtra("position", position);
                 i.putExtra("restaurantID", restaurantID);
-                i.putExtra("name", name);
-                i.putExtra("address", address);
-                i.putExtra("phone", phone);
-                i.putExtra("description", description);
-                i.putExtra("tag", tag);
-                i.putExtra("rating", rating);
-                startActivityForResult(i, EDIT_RESTAURANT);
+                startActivity(i);
             }
         });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if(requestCode == EDIT_RESTAURANT){
-            if(resultCode == RESULT_OK){
-                int pos = data.getIntExtra("position", -1);
-                if(pos != -1){
-
-                    String restaurantID = data.getStringExtra("restaurantID");
-                    String name = data.getStringExtra("name");
-                    String address = data.getStringExtra("address");
-                    String phone = data.getStringExtra("phone");
-                    String description = data.getStringExtra("description");
-                    String tag = data.getStringExtra("tag");
-                    float rating = data.getFloatExtra("rating", -1);
-
-                    TextView txtName = findViewById(R.id.txtName);
-                    TextView txtAddress = findViewById(R.id.txtAddress);
-                    TextView txtPhone = findViewById(R.id.txtPhone);
-                    TextView txtDescription = findViewById(R.id.txtDescription);
-                    TextView txtTag = findViewById(R.id.txtTag);
-                    rating_bar.setRating(rating);
-
-                    txtName.setText(name);
-                    txtAddress.setText(address);
-                    txtPhone.setText(phone);
-                    txtDescription.setText(description);
-                    txtTag.setText(tag);
-
-                    Intent i = getIntent();
-                    i.putExtra("name", name);
-                    i.putExtra("address", address);
-                    i.putExtra("phone", phone);
-                    i.putExtra("description", description);
-                    i.putExtra("tag", tag);
-                    i.putExtra("position", pos);
-
-                    long resID = Long.parseLong(restaurantID);
-                    myDB.editRestaurant(db, resID, name, address, phone, description, tag);
-
-//                    finish();
-//                   startActivityForResult(i, EDIT_RESTAURANT);
-                }
-            }
-        }
     }
 }

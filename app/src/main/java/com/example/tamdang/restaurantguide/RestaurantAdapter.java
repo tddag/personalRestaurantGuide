@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -16,9 +15,8 @@ import java.util.Locale;
 public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
 
     private ArrayList<Restaurant> dataSet;
-    Context context;
-
     List<Restaurant> restaurantList;
+    Context context;
 
     public RestaurantAdapter(@NonNull Context context, int resource, @NonNull List<Restaurant> objects) {
         super(context, resource, objects);
@@ -43,7 +41,6 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
         return  convertView;
     }
 
-
     // filter
     public void filter(String charText) {
         charText = charText.toLowerCase(Locale.getDefault());
@@ -58,6 +55,5 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
             }
         }
         notifyDataSetChanged();
-
     }
 }
