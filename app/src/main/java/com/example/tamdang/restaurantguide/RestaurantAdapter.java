@@ -8,18 +8,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
 
     private ArrayList<Restaurant> dataSet;
+    List<Restaurant> restaurantList;
     Context context;
 
-    public RestaurantAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Restaurant> objects) {
+    public RestaurantAdapter(@NonNull Context context, int resource, @NonNull List<Restaurant> objects) {
         super(context, resource, objects);
         this.context = context;
-        this.dataSet = objects;
+        this.restaurantList = objects;
+        this.dataSet = new ArrayList<Restaurant>();
+        this.dataSet.addAll(restaurantList);
     }
 
 
@@ -31,9 +35,25 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
         }
         TextView name = convertView.findViewById(R.id.txtName);
 
-        Restaurant r = dataSet.get(position);
+        Restaurant r = restaurantList.get(position);
         name.setText(r.getName());
 
         return  convertView;
+    }
+
+    // filter
+    public void filter(String charText) {
+        charText = charText.toLowerCase(Locale.getDefault());
+        restaurantList.clear();
+        if (charText.length() == 0) {
+            restaurantList.addAll(dataSet);
+        } else {
+            for (Restaurant restaurant: dataSet) {
+                if (restaurant.getName().toLowerCase(Locale.getDefault()).contains(charText)) {
+                    restaurantList.add(restaurant);
+                }
+            }
+        }
+        notifyDataSetChanged();
     }
 }
