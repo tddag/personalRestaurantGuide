@@ -46,36 +46,37 @@
             android:orientation="horizontal">
 
             <Button
-                android:layout_width="49dp"
+                android:layout_width="109dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                android:text="Rate"
+                android:text="Rate Us"
                 android:textAllCaps="false"
-                android:textSize="12dp" />
+                android:textSize="12sp" />
 
             <Button
                 android:layout_width="109dp"
+                android:layout_marginLeft="15dp"
                 android:layout_height="wrap_content"
-                android:text="Share Facebook"
+                android:text="Share On Facebook"
                 android:textAllCaps="false"
-                android:textSize="12dp" />
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="20dp"
+            android:paddingTop="15dp"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="113dp"
                 android:layout_height="49dp"
                 android:text="Name: "
                 android:textAlignment="center"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/txtName"
-                android:layout_width="117dp"
+                android:hint="Name"
+                android:layout_width="140dp"
                 android:layout_height="32dp"
                 android:background="#edebeb" />
         </LinearLayout>
@@ -84,18 +85,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingTop="20dp">
+            android:paddingTop="15dp">
 
             <TextView
                 android:layout_width="113dp"
                 android:layout_height="49dp"
                 android:text="Address: "
                 android:textAlignment="center"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/txtAddress"
-                android:layout_width="117dp"
+                android:hint="Address"
+                android:layout_width="140dp"
                 android:layout_height="32dp"
                 android:background="#edebeb" />
         </LinearLayout>
@@ -104,18 +106,19 @@
             android:layout_width="match_parent"
             android:layout_height="71dp"
             android:orientation="horizontal"
-            android:paddingTop="20dp">
+            android:paddingTop="15dp">
 
             <TextView
                 android:layout_width="113dp"
                 android:layout_height="49dp"
                 android:text="Phone: "
                 android:textAlignment="center"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/txtPhone"
-                android:layout_width="117dp"
+                android:hint="Phone Number"
+                android:layout_width="140dp"
                 android:layout_height="32dp"
                 android:background="#edebeb" />
         </LinearLayout>
@@ -124,7 +127,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingTop="20dp">
+            android:paddingTop="15dp">
 
             <TextView
                 android:layout_width="113dp"
@@ -132,11 +135,12 @@
                 android:lines="2"
                 android:text="Description: "
                 android:textAlignment="center"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/txtDescription"
-                android:layout_width="117dp"
+                android:hint="Description"
+                android:layout_width="140dp"
                 android:layout_height="32dp"
                 android:background="#edebeb" />
         </LinearLayout>
@@ -145,18 +149,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingTop="20dp">
+            android:paddingTop="15dp">
 
             <TextView
                 android:layout_width="113dp"
                 android:layout_height="49dp"
                 android:text="Tag: "
                 android:textAlignment="center"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/txtTag"
-                android:layout_width="117dp"
+                android:hint="Tags"
+                android:layout_width="140dp"
                 android:layout_height="32dp"
                 android:background="#edebeb" />
         </LinearLayout>
@@ -176,19 +181,19 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingTop="20dp">
+            android:paddingTop="12dp">
 
             <Button
                 android:id="@+id/btnEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
                 android:background="@drawable/add_restaurant_btn"
                 android:text="Edit"
                 android:textAllCaps="false" />
 
             <Button
                 android:id="@+id/btnShowMap"
+                android:layout_marginLeft="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/restaurant_list_btn"
