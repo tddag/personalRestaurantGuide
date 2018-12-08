@@ -27,19 +27,19 @@ public class EmailActivity extends AppCompatActivity {
         final long restaurantID = i.getLongExtra("restaurantID", -1);
         Restaurant r = myDB.getRestaurant(db, restaurantID);
 
-        EditText subject = findViewById(R.id.txtSubject);
+        EditText subject = findViewById(R.id.edtSubject);
         subject.setText(r.getName());
-        EditText message = findViewById(R.id.txtContent);
+        EditText message = findViewById(R.id.edtMessage);
         message.setText(r.getDescription());
     }
 
     public void onButtonTap(View v){
 
-        EditText mail = findViewById(R.id.txtAddress);
+        EditText mail = findViewById(R.id.edtEmail);
         String inputMail = mail.getText().toString();
-        EditText subject = findViewById(R.id.txtSubject);
+        EditText subject = findViewById(R.id.edtSubject);
         String inputSubject = subject.getText().toString();
-        EditText message = findViewById(R.id.txtContent);
+        EditText message = findViewById(R.id.edtMessage);
         String inputMessage = message.getText().toString();
 
         if(!inputMail.equals("") || !inputSubject.equals("") || !inputMessage.equals("")){
