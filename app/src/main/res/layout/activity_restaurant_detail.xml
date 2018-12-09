@@ -29,14 +29,14 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingTop="20dp">
+            android:paddingTop="6dp">
 
             <TextView
                 android:layout_width="197dp"
                 android:layout_height="wrap_content"
                 android:text="Restaurant Detail"
                 android:textAlignment="center"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -51,7 +51,7 @@
                 android:layout_marginRight="20dp"
                 android:text="Rate"
                 android:textAllCaps="false"
-                android:textSize="12dp" />
+                android:textSize="12sp" />
 
             <Button
                 android:id="@+id/btnEmail"
@@ -59,20 +59,20 @@
                 android:layout_height="wrap_content"
                 android:text="Share Email"
                 android:textAllCaps="false"
-                android:textSize="12dp" />
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="20dp"
+            android:paddingTop="3dp"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="113dp"
                 android:layout_height="49dp"
                 android:text="Name: "
                 android:textAlignment="center"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/txtName"
@@ -85,14 +85,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingTop="20dp">
+            android:paddingTop="2dp">
 
             <TextView
                 android:layout_width="113dp"
                 android:layout_height="49dp"
                 android:text="Address: "
                 android:textAlignment="center"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/txtAddress"
@@ -103,16 +103,16 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="71dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingTop="20dp">
+            android:paddingTop="2dp">
 
             <TextView
                 android:layout_width="113dp"
                 android:layout_height="49dp"
                 android:text="Phone: "
                 android:textAlignment="center"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/txtPhone"
@@ -125,7 +125,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingTop="20dp">
+            android:paddingTop="2dp">
 
             <TextView
                 android:layout_width="113dp"
@@ -133,7 +133,7 @@
                 android:lines="2"
                 android:text="Description: "
                 android:textAlignment="center"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/txtDescription"
@@ -146,17 +146,57 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingTop="20dp">
+            android:paddingTop="2dp">
 
             <TextView
                 android:layout_width="113dp"
                 android:layout_height="49dp"
                 android:text="Tag: "
                 android:textAlignment="center"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/txtTag"
+                android:layout_width="117dp"
+                android:layout_height="32dp"
+                android:background="#edebeb" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="2dp">
+
+            <TextView
+                android:layout_width="113dp"
+                android:layout_height="49dp"
+                android:text="Latitude: "
+                android:textAlignment="center"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/txtLatitude"
+                android:layout_width="117dp"
+                android:layout_height="32dp"
+                android:background="#edebeb" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="2dp">
+
+            <TextView
+                android:layout_width="113dp"
+                android:layout_height="49dp"
+                android:text="Longitude: "
+                android:textAlignment="center"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/txtLongitude"
                 android:layout_width="117dp"
                 android:layout_height="32dp"
                 android:background="#edebeb" />
@@ -176,8 +216,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="horizontal"
-            android:paddingTop="20dp">
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btnEdit"
@@ -196,7 +235,5 @@
                 android:text="Show Map"
                 android:textAllCaps="false" />
         </LinearLayout>
-
     </LinearLayout>
-
 </android.support.constraint.ConstraintLayout>

@@ -29,31 +29,31 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingTop="20dp">
+            android:paddingTop="5dp">
 
             <TextView
                 android:layout_width="197dp"
                 android:layout_height="49dp"
                 android:text="Add a Restaurant"
                 android:textAlignment="center"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingTop="20dp">
+            android:paddingTop="0dp">
 
             <TextView
                 android:layout_width="113dp"
                 android:layout_height="49dp"
                 android:text="Name: "
                 android:textAlignment="center"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/edtName"
+                android:id="@+id/addName"
                 android:layout_width="120dp"
                 android:layout_height="44dp"
                 android:textAlignment="center" />
@@ -63,17 +63,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingTop="20dp">
+            android:paddingTop="10dp">
 
             <TextView
                 android:layout_width="113dp"
                 android:layout_height="49dp"
                 android:text="Address: "
                 android:textAlignment="center"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/edtAddress"
+                android:id="@+id/addAddress"
                 android:layout_width="120dp"
                 android:layout_height="44dp"
                 android:textAlignment="center" />
@@ -83,17 +83,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingTop="20dp">
+            android:paddingTop="10dp">
 
             <TextView
                 android:layout_width="113dp"
                 android:layout_height="49dp"
                 android:text="Phone: "
                 android:textAlignment="center"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/edtPhone"
+                android:id="@+id/addPhone"
                 android:layout_width="120dp"
                 android:layout_height="44dp"
                 android:textAlignment="center" />
@@ -103,18 +103,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingTop="20dp">
+            android:paddingTop="10dp">
 
             <TextView
                 android:layout_width="113dp"
                 android:layout_height="49dp"
                 android:text="Description: "
                 android:textAlignment="center"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:lines="2"/>
 
             <EditText
-                android:id="@+id/edtDescription"
+                android:id="@+id/addDescription"
                 android:layout_width="120dp"
                 android:layout_height="44dp"
                 android:textAlignment="center" />
@@ -124,17 +124,57 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingTop="20dp">
+            android:paddingTop="10dp">
 
             <TextView
                 android:layout_width="113dp"
                 android:layout_height="49dp"
                 android:text="Tag: "
                 android:textAlignment="center"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/edtTag"
+                android:id="@+id/addTag"
+                android:layout_width="120dp"
+                android:layout_height="44dp"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:layout_width="113dp"
+            android:layout_height="49dp"
+            android:text="Latitude: "
+            android:textAlignment="center"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/addLatitude"
+            android:layout_width="120dp"
+            android:layout_height="44dp"
+            android:textAlignment="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="10dp">
+
+            <TextView
+                android:layout_width="113dp"
+                android:layout_height="49dp"
+                android:text="Longitude: "
+                android:textAlignment="center"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/addLongitude"
                 android:layout_width="120dp"
                 android:layout_height="44dp"
                 android:textAlignment="center" />
@@ -144,7 +184,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingTop="20dp"
+            android:paddingTop="0dp"
             android:gravity="center">
 
             <Button
