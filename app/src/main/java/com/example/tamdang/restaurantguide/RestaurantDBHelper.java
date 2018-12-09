@@ -52,7 +52,7 @@ public class RestaurantDBHelper extends SQLiteOpenHelper {
                 RestaurantContract.RestaurantEntry.TAG,
                 RestaurantContract.RestaurantEntry.RATING,
                 RestaurantContract.RestaurantEntry.LATITUDE,
-                RestaurantContract.RestaurantEntry.LONGITUDE,
+                RestaurantContract.RestaurantEntry.LONGITUDE
         };
         String selection = RestaurantContract.RestaurantEntry._ID+"= ? ";
         String[] selectionArgs = {Long.toString(restaurantId)};
@@ -68,7 +68,6 @@ public class RestaurantDBHelper extends SQLiteOpenHelper {
         );
 
         if(cursor.moveToFirst()){
-
             long id = cursor.getLong(cursor.getColumnIndexOrThrow(RestaurantContract.RestaurantEntry._ID));
             String name = cursor.getString(
                     cursor.getColumnIndexOrThrow(RestaurantContract.RestaurantEntry.NAME));
@@ -86,13 +85,12 @@ public class RestaurantDBHelper extends SQLiteOpenHelper {
 
             Restaurant restaurant = new Restaurant(id, name, address, phone, description, tag, rating, latitude, longitude);
             return restaurant;
-
         }
 
         cursor.close();
         return null;
     }
-    public boolean updateRestaurant(SQLiteDatabase db, long restaurantId, String name, String address, String phone, String description, String tag, float rating){
+    public boolean updateRestaurant(SQLiteDatabase db, long restaurantId, String name, String address, String phone, String description, String tag,  float rating, double latitude, double longitude){
         ContentValues values = new ContentValues();
         values.put(RestaurantContract.RestaurantEntry.NAME, name);
         values.put(RestaurantContract.RestaurantEntry.ADDRESS, address);
@@ -100,15 +98,15 @@ public class RestaurantDBHelper extends SQLiteOpenHelper {
         values.put(RestaurantContract.RestaurantEntry.DESCRIPTION, description);
         values.put(RestaurantContract.RestaurantEntry.TAG, tag);
         values.put(RestaurantContract.RestaurantEntry.RATING, rating);
-//        values.put(RestaurantContract.RestaurantEntry.LATITUDE, latitude);
-//        values.put(RestaurantContract.RestaurantEntry.LONGITUDE, longitude);
+        values.put(RestaurantContract.RestaurantEntry.LATITUDE, latitude);
+        values.put(RestaurantContract.RestaurantEntry.LONGITUDE, longitude);
 
         db.update(RestaurantContract.RestaurantEntry.TABLE_NAME, values, "ID= ?", new String[]{Long.toString(restaurantId)});
         return true;
     }
     public boolean removeRestaurant(SQLiteDatabase db, Restaurant restaurant){
 
-        db.delete(RestaurantContract.RestaurantEntry.TABLE_NAME, "ID= ?", new String[]{Long.toString(restaurant.getId())});
+        db.delete(RestaurantContract.RestaurantEntry.TABLE_NAME,"ID= ?", new String[]{Long.toString(restaurant.getId())});
         return true;
     }
 

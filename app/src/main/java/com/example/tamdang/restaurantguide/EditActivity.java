@@ -32,6 +32,8 @@ public class EditActivity extends AppCompatActivity {
         EditText edtPhone = findViewById(R.id.edtPhone);
         EditText edtDescription = findViewById(R.id.edtDescription);
         EditText edtTag = findViewById(R.id.edtTag);
+        EditText edtLat = findViewById(R.id.edtLatitude);
+        EditText edtLong = findViewById(R.id.edtLongitude);
         RatingBar rb = findViewById(R.id.ratingBar4);
 
         // Get a restaurant along with restaurantID
@@ -42,6 +44,8 @@ public class EditActivity extends AppCompatActivity {
         edtPhone.setText(r.getPhone());
         edtDescription.setText(r.getDescription());
         edtTag.setText(r.getTag());
+        edtTag.setText(Double.toString(r.getLatitude()));
+        edtTag.setText(Double.toString(r.getLongitude()));
         rb.setRating(r.getRating());
 
         // Define update button
@@ -57,6 +61,8 @@ public class EditActivity extends AppCompatActivity {
                 EditText edtPhone1 = findViewById(R.id.edtPhone);
                 EditText edtDescription1 = findViewById(R.id.edtDescription);
                 EditText edtTag1 = findViewById(R.id.edtTag);
+                EditText edtLat1 = findViewById(R.id.edtLatitude);
+                EditText edtLong1 = findViewById(R.id.edtLongitude);
                 RatingBar rb = findViewById(R.id.ratingBar4);
 
                 String name = edtName1.getText().toString();
@@ -64,10 +70,12 @@ public class EditActivity extends AppCompatActivity {
                 String phone = edtPhone1.getText().toString();
                 String description = edtDescription1.getText().toString();
                 String tag = edtTag1.getText().toString();
+                double lat = Double.parseDouble(edtLat1.getText().toString());
+                double longitude = Double.parseDouble(edtLong1.getText().toString());
                 float rating = rb.getRating();
 
                 // Update Restaurant DB
-                myDB.updateRestaurant(db, restaurantID, name, address, phone, description, tag, rating);
+                myDB.updateRestaurant(db, restaurantID, name, address, phone, description, tag, rating, lat, longitude);
                 setResult(RESULT_OK);
 
                 // Go back to RestaurantActivity

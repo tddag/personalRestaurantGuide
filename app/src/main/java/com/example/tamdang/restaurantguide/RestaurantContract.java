@@ -17,23 +17,21 @@ public class RestaurantContract {
         public static final String RATING = "rating";
         public static final String LATITUDE = "latitude";
         public static final String LONGITUDE = "longitude";
-
     }
 
     public static final String SQL_CREATE_RESTAURANT =
-            "CREATE TABLE "+RestaurantEntry.TABLE_NAME+" ("+
-                    RestaurantEntry._ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
-                    RestaurantEntry.NAME+" TEXT, " +
-                    RestaurantEntry.ADDRESS+" TEXT, " +
-                    RestaurantEntry.PHONE+" TEXT, " +
-                    RestaurantEntry.DESCRIPTION+" TEXT, " +
-                    RestaurantEntry.TAG+" TEXT, " +
-                    RestaurantEntry.RATING+" NUMBER, " +
-                    RestaurantEntry.LATITUDE+" DECIMAL(9, 12), " +
-                    RestaurantEntry.LONGITUDE+" DECIMAL(9, 12))";
+            "CREATE TABLE " + RestaurantEntry.TABLE_NAME+" ("+
+                    RestaurantEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "+
+                    RestaurantEntry.NAME + " TEXT, " +
+                    RestaurantEntry.ADDRESS + " TEXT, " +
+                    RestaurantEntry.PHONE + " TEXT, " +
+                    RestaurantEntry.DESCRIPTION + " TEXT, " +
+                    RestaurantEntry.TAG + " TEXT, " +
+                    RestaurantEntry.RATING + " NUMBER, " +
+                    RestaurantEntry.LATITUDE + " DECIMAL(9, 12), " +
+                    RestaurantEntry.LONGITUDE + " DECIMAL(9, 12))";
 
     public static final String SQL_DROP_RESTAURANT =
-            "DROP TABLE IF EXISTS "+RestaurantEntry.TABLE_NAME;
-
+            "DROP TABLE IF EXISTS " + RestaurantEntry.TABLE_NAME;
 }
 

@@ -34,20 +34,24 @@ public class AddActivity extends AppCompatActivity {
                 // Set intent to RestaurantActivity
                 Intent i = new Intent(v.getContext(), RestaurantActivity.class);
 
-                EditText edtName = findViewById(R.id.edtName);
-                EditText edtAddress = findViewById(R.id.edtAddress);
-                EditText edtPhone = findViewById(R.id.edtPhone);
-                EditText edtDescription = findViewById(R.id.edtDescription);
-                EditText edtTag = findViewById(R.id.edtTag);
+                EditText addName = findViewById(R.id.addName);
+                EditText addAddress = findViewById(R.id.addAddress);
+                EditText addPhone = findViewById(R.id.addPhone);
+                EditText addDescription = findViewById(R.id.addDescription);
+                EditText addTag = findViewById(R.id.addTag);
+                EditText addLat = findViewById(R.id.addLatitude);
+                EditText addLong = findViewById(R.id.addLongitude);
 
-                String name = edtName.getText().toString();
-                String address = edtAddress.getText().toString();
-                String phone = edtPhone.getText().toString();
-                String description = edtDescription.getText().toString();
-                String tag = edtTag.getText().toString();
+                String name = addName.getText().toString();
+                String address = addAddress.getText().toString();
+                String phone = addPhone.getText().toString();
+                String description = addDescription.getText().toString();
+                String tag = addTag.getText().toString();
+                double lat = Double.parseDouble(addLat.getText().toString());
+                double longitude = Double.parseDouble(addLong.getText().toString());
 
                 // Add new Restaurant to DB
-                Restaurant newRestaurant = new Restaurant(name, address, phone, description, tag);
+                Restaurant newRestaurant = new Restaurant(name, address, phone, description, tag, lat, longitude);
                 myDB.addRestaurant(db, newRestaurant);
 
                 // Go back to RestaurantActivity

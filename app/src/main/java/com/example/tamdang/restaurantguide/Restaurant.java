@@ -22,6 +22,16 @@ public class Restaurant {
         this.tag = tag;
     }
 
+    public Restaurant(String name, String address, String phone, String description, String tag, double latitude, double longitude) {
+        this.name = name;
+        this.address = address;
+        this.phone = phone;
+        this.description = description;
+        this.tag = tag;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
     public Restaurant(String name, String address, String phone, String description, String tag, float rating, double latitude, double longitude) {
         this.name = name;
         this.address = address;
@@ -30,8 +40,9 @@ public class Restaurant {
         this.tag = tag;
         this.rating = rating;
         this.latitude = latitude;
-        this.longitude =longitude;
+        this.longitude = longitude;
     }
+
     public Restaurant(long id, String name, String address, String phone, String description, String tag, float rating, double latitude, double longitude) {
         this.id = id;
         this.name = name;
@@ -41,7 +52,7 @@ public class Restaurant {
         this.tag = tag;
         this.rating = rating;
         this.latitude = latitude;
-        this.longitude =longitude;
+        this.longitude = longitude;
     }
 
     public String getName() {
@@ -54,7 +65,6 @@ public class Restaurant {
 
     public String getAddress() {
         return address;
-
     }
 
     public void setAddress(String address) {
