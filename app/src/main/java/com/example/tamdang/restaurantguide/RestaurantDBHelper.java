@@ -17,9 +17,9 @@ public class RestaurantDBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(RestaurantContract.SQL_CREATE_RESTAURANT);
-        addRestaurant(db, new Restaurant("John", "Doe", "Software Engineer - Google Inc.", "johndoe@gmail.com", "Canadian, Enthusiasm in Programming", 4));
-        addRestaurant(db, new Restaurant("Elon", "Musk", "Founder - Tesla Inc.", "elonmusk@gmail.com", "AI, Machine Learning, Technology Entrepreneurship", 1));
-        addRestaurant(db, new Restaurant("Bill", "Gates", "Founder - Microsoft Inc.", "billgates@gmail.com", "Billionaire, Windows OS Founder", 5));
+        addRestaurant(db, new Restaurant("Grey Gardens", "199 Augusta, Toronto ON M5T 2L4", "(647) 351-1552", "Part wine bar and part restaurant, this effortlessly cool spot has an bohemian-luxe atmosphere and an unforgettable Peking-style duck.", "Seafood, Dinner & Dessert", 4, 43.654124, -79.401534));
+        addRestaurant(db, new Restaurant("Sotto Sotto", "120 Avenue Rd, Toronto ON M5R 2H4", "(416) 962-0011", "This candlelit space has plenty of nooks and crannies—perfect for curling up with a loved one or spying on an A-lister.", "Italian, Dinner, Lunch", 1,43.674025, -79.396360));
+        addRestaurant(db, new Restaurant("Barberian's Steak House", "7 Elm St., Toronto ON M5G 1H1, Canada", "(416) 597-0335", "To dine at this old battle axe of a restaurant—a veritable Toronto institution since 1959—is to step back in time.", "American, Dinner & Happy Hour", 5, 43.657888, -79.382236));
     }
 
     @Override
@@ -36,6 +36,8 @@ public class RestaurantDBHelper extends SQLiteOpenHelper {
         values.put(RestaurantContract.RestaurantEntry.DESCRIPTION, restaurant.getDescription());
         values.put(RestaurantContract.RestaurantEntry.TAG, restaurant.getTag());
         values.put(RestaurantContract.RestaurantEntry.RATING, restaurant.getRating());
+        values.put(RestaurantContract.RestaurantEntry.LATITUDE, restaurant.getLatitude());
+        values.put(RestaurantContract.RestaurantEntry.LONGITUDE, restaurant.getLongitude());
 
         return db.insert(RestaurantContract.RestaurantEntry.TABLE_NAME, null, values);
     }
@@ -49,6 +51,8 @@ public class RestaurantDBHelper extends SQLiteOpenHelper {
                 RestaurantContract.RestaurantEntry.DESCRIPTION,
                 RestaurantContract.RestaurantEntry.TAG,
                 RestaurantContract.RestaurantEntry.RATING,
+                RestaurantContract.RestaurantEntry.LATITUDE,
+                RestaurantContract.RestaurantEntry.LONGITUDE,
         };
         String selection = RestaurantContract.RestaurantEntry._ID+"= ? ";
         String[] selectionArgs = {Long.toString(restaurantId)};
@@ -77,7 +81,10 @@ public class RestaurantDBHelper extends SQLiteOpenHelper {
             String tag = cursor.getString(
                     cursor.getColumnIndexOrThrow(RestaurantContract.RestaurantEntry.TAG));
             float rating = cursor.getLong(cursor.getColumnIndexOrThrow(RestaurantContract.RestaurantEntry.RATING));
-            Restaurant restaurant = new Restaurant(id, name, address, phone, description, tag, rating);
+            double latitude = cursor.getLong(cursor.getColumnIndexOrThrow(RestaurantContract.RestaurantEntry.LATITUDE));
+            double longitude = cursor.getLong(cursor.getColumnIndexOrThrow(RestaurantContract.RestaurantEntry.LONGITUDE));
+
+            Restaurant restaurant = new Restaurant(id, name, address, phone, description, tag, rating, latitude, longitude);
             return restaurant;
 
         }
@@ -93,6 +100,9 @@ public class RestaurantDBHelper extends SQLiteOpenHelper {
         values.put(RestaurantContract.RestaurantEntry.DESCRIPTION, description);
         values.put(RestaurantContract.RestaurantEntry.TAG, tag);
         values.put(RestaurantContract.RestaurantEntry.RATING, rating);
+//        values.put(RestaurantContract.RestaurantEntry.LATITUDE, latitude);
+//        values.put(RestaurantContract.RestaurantEntry.LONGITUDE, longitude);
+
         db.update(RestaurantContract.RestaurantEntry.TABLE_NAME, values, "ID= ?", new String[]{Long.toString(restaurantId)});
         return true;
     }
