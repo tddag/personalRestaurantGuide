@@ -32,18 +32,26 @@ public class RestaurantDetailActivity extends AppCompatActivity {
         Intent i = getIntent();
         final long restaurantID = i.getLongExtra("restaurantID", -1);
 
+        // Defining TextView
         TextView txtName = findViewById(R.id.txtName);
         TextView txtAddress = findViewById(R.id.txtAddress);
         TextView txtPhone = findViewById(R.id.txtPhone);
         TextView txtDescription = findViewById(R.id.txtDescription);
         TextView txtTag = findViewById(R.id.txtTag);
+        TextView txtLatitude = findViewById(R.id.txtLatitude);
+        TextView txtLongitude = findViewById(R.id.txtLongitude);
 
+        // Set database value for TextView
         Restaurant r = myDB.getRestaurant(db, restaurantID);
         txtName.setText(r.getName());
         txtAddress.setText(r.getAddress());
         txtPhone.setText(r.getPhone());
         txtDescription.setText(r.getDescription());
         txtTag.setText(r.getTag());
+        txtLatitude.setText(String.valueOf(r.getLatitude()));
+        txtLongitude.setText(String.valueOf(r.getLongitude()));
+
+
 
         //Rating Bar
         rating_bar = findViewById(R.id.ratingBar3);

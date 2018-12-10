@@ -76,6 +76,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         final long restaurantID = i.getLongExtra("restaurantID", -1);
         Restaurant r = myDB.getRestaurant(db, restaurantID);
         String Address = r.getName();
+//        if (r.getLatitude() != 0  && r.getLongitude() != 0) {
+//            Lat = r.getLatitude();
+//            Lng = r.getLongitude();
+//            destination = new LatLng(Lat, Lng);
+//        }
 
         mMap.addMarker(new MarkerOptions().position(destination).title(Address));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(destination));
