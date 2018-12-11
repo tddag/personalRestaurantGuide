@@ -34,9 +34,13 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
         }
 
         TextView name = convertView.findViewById(R.id.txtName);
+        TextView tag = convertView.findViewById(R.id.txtTag);
+
+
 
         Restaurant r = restaurantList.get(position);
         name.setText(r.getName());
+        tag.setText(r.getTag());
 
         return  convertView;
     }
@@ -49,7 +53,12 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
             restaurantList.addAll(dataSet);
         } else {
             for (Restaurant restaurant: dataSet) {
+                // Search by Name
                 if (restaurant.getName().toLowerCase(Locale.getDefault()).contains(charText)) {
+                    restaurantList.add(restaurant);
+                }
+                // Search by Tag
+                if (restaurant.getTag().toLowerCase(Locale.getDefault()).contains(charText)) {
                     restaurantList.add(restaurant);
                 }
             }
