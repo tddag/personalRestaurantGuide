@@ -44,8 +44,8 @@ public class EditActivity extends AppCompatActivity {
         edtPhone.setText(r.getPhone());
         edtDescription.setText(r.getDescription());
         edtTag.setText(r.getTag());
-        edtTag.setText(Double.toString(r.getLatitude()));
-        edtTag.setText(Double.toString(r.getLongitude()));
+        edtLat.setText(Double.toString(r.getLatitude()));
+        edtLong.setText(Double.toString(r.getLongitude()));
         rb.setRating(r.getRating());
 
         // Define update button
