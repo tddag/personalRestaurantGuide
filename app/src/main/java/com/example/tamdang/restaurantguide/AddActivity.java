@@ -4,10 +4,15 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.Toast;
+
+import com.example.tamdang.restaurantguide.Utility.*;
 
 public class AddActivity extends AppCompatActivity {
 
@@ -47,17 +52,28 @@ public class AddActivity extends AppCompatActivity {
                 String phone = addPhone.getText().toString();
                 String description = addDescription.getText().toString();
                 String tag = addTag.getText().toString();
-                double lat = Double.parseDouble(addLat.getText().toString());
-                double longitude = Double.parseDouble(addLong.getText().toString());
 
-                // Add new Restaurant to DB
-                Restaurant newRestaurant = new Restaurant(name, address, phone, description, tag, lat, longitude);
-                myDB.addRestaurant(db, newRestaurant);
+                double num1 = Double.parseDouble(addLat.getText().toString());
+                double num2 = Double.parseDouble(addLong.getText().toString());
+                double lat = Utility.locValid(num1);
+                double longitude = Utility.locValid(num2);
 
-                // Go back to RestaurantActivity
-                startActivity(i);
+                if (Utility.isEmpty(name) | Utility.isEmpty(address) | Utility.isEmpty(phone) | Utility.phoneInvalid(phone)
+                        | Utility.isEmpty(description) | Utility.isEmpty(tag)) {
+                    toastMessage("You have entered some invalid data on the form. Please check that the fields are valid before continuing.");
+                } else {
+                    // Add new Restaurant to DB
+                    Restaurant newRestaurant = new Restaurant(name, address, phone, description, tag, lat, longitude);
+                    myDB.addRestaurant(db, newRestaurant);
+
+                    // Go back to RestaurantActivity
+                    startActivity(i);
+                }
             }
         });
+    }
 
+    private void toastMessage(String message){
+        Toast.makeText(this,message,Toast.LENGTH_LONG).show();
     }
 }
