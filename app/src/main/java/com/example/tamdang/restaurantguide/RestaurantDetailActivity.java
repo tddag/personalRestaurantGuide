@@ -2,6 +2,10 @@ package com.example.tamdang.restaurantguide;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,13 +15,16 @@ import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-public class RestaurantDetailActivity extends AppCompatActivity {
+public class RestaurantDetailActivity extends AppCompatActivity implements SensorEventListener {
 
     Button btnEdit, btnShowMap, btnEmail;
     private RatingBar rating_bar;
     // Define DB
     private SQLiteDatabase db;
     private RestaurantDBHelper myDB;
+
+    // Setting sensorManager for location tracking
+    private SensorManager sensorManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +58,6 @@ public class RestaurantDetailActivity extends AppCompatActivity {
         txtLatitude.setText(String.valueOf(r.getLatitude()));
         txtLongitude.setText(String.valueOf(r.getLongitude()));
 
-
-
         //Rating Bar
         rating_bar = findViewById(R.id.ratingBar3);
         rating_bar.setRating(r.getRating());
@@ -69,6 +74,9 @@ public class RestaurantDetailActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        // Activating sensor service for map
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 
         //Defining Map Button
         btnShowMap = findViewById(R.id.btnShowMap);
@@ -93,5 +101,32 @@ public class RestaurantDetailActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
+
+
+    // Required Sensor override activities
+    @Override
+    protected void onResume() {
+        // Resumes tracker when app is running/tracking is available
+        super.onResume();
+        sensorManager.registerListener(this,
+                sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+                SensorManager.SENSOR_DELAY_NORMAL);
+    }
+
+    @Override
+    protected void onPause() {
+        // Pauses tracker when necessary
+        super.onPause();
+        sensorManager.unregisterListener(this);
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
     }
 }
