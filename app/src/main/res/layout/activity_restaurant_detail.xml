@@ -110,7 +110,7 @@
             <TextView
                 android:layout_width="113dp"
                 android:layout_height="49dp"
-                android:text="Phone: "
+                android:text="Phone:"
                 android:textAlignment="center"
                 android:textSize="16sp" />
 
@@ -131,7 +131,7 @@
                 android:layout_width="113dp"
                 android:layout_height="49dp"
                 android:lines="2"
-                android:text="Description: "
+                android:text="Description:"
                 android:textAlignment="center"
                 android:textSize="16sp" />
 
