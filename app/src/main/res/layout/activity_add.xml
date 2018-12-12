@@ -46,7 +46,7 @@
             android:paddingTop="0dp">
 
             <TextView
-                android:layout_width="113dp"
+                android:layout_width="82dp"
                 android:layout_height="49dp"
                 android:text="Name: "
                 android:textAlignment="center"
@@ -54,7 +54,7 @@
 
             <EditText
                 android:id="@+id/addName"
-                android:layout_width="120dp"
+                android:layout_width="166dp"
                 android:layout_height="44dp"
                 android:textAlignment="center" />
         </LinearLayout>
@@ -66,7 +66,7 @@
             android:paddingTop="10dp">
 
             <TextView
-                android:layout_width="113dp"
+                android:layout_width="82dp"
                 android:layout_height="49dp"
                 android:text="Address: "
                 android:textAlignment="center"
@@ -74,7 +74,7 @@
 
             <EditText
                 android:id="@+id/addAddress"
-                android:layout_width="120dp"
+                android:layout_width="166dp"
                 android:layout_height="44dp"
                 android:textAlignment="center" />
         </LinearLayout>
@@ -86,7 +86,7 @@
             android:paddingTop="10dp">
 
             <TextView
-                android:layout_width="113dp"
+                android:layout_width="82dp"
                 android:layout_height="49dp"
                 android:text="Phone: "
                 android:textAlignment="center"
@@ -94,7 +94,7 @@
 
             <EditText
                 android:id="@+id/addPhone"
-                android:layout_width="120dp"
+                android:layout_width="166dp"
                 android:layout_height="44dp"
                 android:textAlignment="center" />
         </LinearLayout>
@@ -106,16 +106,16 @@
             android:paddingTop="10dp">
 
             <TextView
-                android:layout_width="113dp"
+                android:layout_width="82dp"
                 android:layout_height="49dp"
+                android:lines="2"
                 android:text="Description: "
                 android:textAlignment="center"
-                android:textSize="16sp"
-                android:lines="2"/>
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/addDescription"
-                android:layout_width="120dp"
+                android:layout_width="166dp"
                 android:layout_height="44dp"
                 android:textAlignment="center" />
         </LinearLayout>
@@ -127,7 +127,7 @@
             android:paddingTop="10dp">
 
             <TextView
-                android:layout_width="113dp"
+                android:layout_width="82dp"
                 android:layout_height="49dp"
                 android:text="Tag: "
                 android:textAlignment="center"
@@ -135,7 +135,7 @@
 
             <EditText
                 android:id="@+id/addTag"
-                android:layout_width="120dp"
+                android:layout_width="166dp"
                 android:layout_height="44dp"
                 android:textAlignment="center" />
         </LinearLayout>
@@ -146,18 +146,18 @@
         android:orientation="horizontal"
         android:paddingTop="10dp">
 
-        <TextView
-            android:layout_width="113dp"
-            android:layout_height="49dp"
-            android:text="Latitude: "
-            android:textAlignment="center"
-            android:textSize="16sp" />
+            <TextView
+                android:layout_width="82dp"
+                android:layout_height="49dp"
+                android:text="Latitude: "
+                android:textAlignment="center"
+                android:textSize="16sp" />
 
-        <EditText
-            android:id="@+id/addLatitude"
-            android:layout_width="120dp"
-            android:layout_height="44dp"
-            android:textAlignment="center" />
+            <EditText
+                android:id="@+id/addLatitude"
+                android:layout_width="166dp"
+                android:layout_height="44dp"
+                android:textAlignment="center" />
         </LinearLayout>
 
         <LinearLayout
@@ -167,7 +167,7 @@
             android:paddingTop="10dp">
 
             <TextView
-                android:layout_width="113dp"
+                android:layout_width="82dp"
                 android:layout_height="49dp"
                 android:text="Longitude: "
                 android:textAlignment="center"
@@ -175,7 +175,7 @@
 
             <EditText
                 android:id="@+id/addLongitude"
-                android:layout_width="120dp"
+                android:layout_width="166dp"
                 android:layout_height="44dp"
                 android:textAlignment="center" />
         </LinearLayout>
